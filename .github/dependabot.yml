@@ -1,0 +1,44 @@
+version: 2
+
+updates:
+  # =====================================
+  # Laravel (Composer)
+  # =====================================
+  - package-ecosystem: "composer"
+    directory: "/C:/Program Files/Git"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "php"
+      - "laravel"
+    ignore:
+      # Laravel メジャーアップデート防止（例: 10 → 11）
+      - dependency-name: "laravel/framework"
+        update-types: ["version-update:semver-major"]
+  # =====================================
+  # Frontend (React / Vue - npm)
+  # =====================================
+  - package-ecosystem: "npm"
+    directory: "/C:/Program Files/Git"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "frontend"
+    ignore:
+      # メジャーアップデートを抑制したい場合（任意）
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  # =====================================
+  # GitHub Actions
+  # =====================================
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "ci"
